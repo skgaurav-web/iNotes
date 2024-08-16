@@ -1,5 +1,11 @@
+import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/Pages/dashboard.dart';
+import 'package:myapp/Pages/login.dart';
+import 'package:myapp/Pages/my.dart';
+
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -9,34 +15,56 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      body:  Column(
-        children: [
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTime();
+   
+  }
 
-StreamBuilder<Object>(
-  stream: null,
-  builder: (context, snapshot) {
-    return AvatarGlow(
-      startDelay: const Duration(milliseconds: 1000),
-      glowColor: Colors.white,
-      glowShape: BoxShape.circle,
-      curve: Curves.fastOutSlowIn,
-      child: const Material(
-        elevation: 8.0,
-        shape: CircleBorder(),
-        color: Colors.transparent,
-        child: CircleAvatar(
-          backgroundImage: AssetImage('assets/images/icons8-note-pad-64.png'),
-          radius: 50.0,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+          height: 200,
+          child: Column(
+            children: [
+              AvatarGlow(
+                startDelay: const Duration(milliseconds: 1000),
+                glowColor: const Color.fromARGB(221, 2, 102, 218),
+                glowShape: BoxShape.circle,
+                animate: true,
+                curve: Curves.fastOutSlowIn,
+                child: Image.asset('assets/images/icons8-copybook-94.png'),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Text(
+                "iNotes",
+                style: TextStyle(
+                    fontSize: 28,
+                    fontFamily: GoogleFonts.prostoOne().fontFamily,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 2, 102, 218)),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
-),
 
-        ],
-      ),
-    );
+  startTime() async {
+    var duration = const Duration(seconds: 4);
+    return Timer(duration, navigationPage);
+  }
+
+  Future<void> navigationPage() async {
+    if (!mounted) return;
+      My.pushReplaced(context, const Login());
   }
 }
