@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -8,15 +9,15 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-   late List<Widget> _pages;
+  late List<Widget> _pages;
   late Widget _page1;
   late Widget _page2;
   late Widget _page3;
 
-   int _currentIndex=0;
+  late int _currentIndex;
   late Widget _currentPage;
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -29,37 +30,37 @@ class _DashboardState extends State<Dashboard> {
     _currentIndex = 0;
     _currentPage = _page1;
   }
+
   void changeTab(int index) {
     setState(() {
       _currentIndex = index;
       _currentPage = _pages[index];
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _currentPage,
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-        
-      ),
-      bottomNavigationBar: ConvexAppBar(
-    items: [
-      TabItem(icon: Icons.dashboard, title: 'Dashboard'),
-      TabItem(icon: Icons.add, title: 'Add'),
-      TabItem(icon: Icons.person_rounded, title: 'Profile'),
-      
-    ],
-    onTap: (int i) => changeTab(i),
-  )
-    );
+      backgroundColor: Colors.white,
+        body: _currentPage,
+        appBar: AppBar(
+          title: const Text("Dashboard"),
+        ),
+        bottomNavigationBar: ConvexAppBar(
+          items: const [
+            TabItem(icon: Icons.dashboard, title: 'Dashboard'),
+            TabItem(icon: Icons.add, title: 'Add'),
+            TabItem(icon: Icons.person_rounded, title: 'Profile'),
+          ],
+          onTap: (int i) => changeTab(i),
+        ));
   }
 }
 
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("page1"),
     );
   }
@@ -68,7 +69,7 @@ class Page1 extends StatelessWidget {
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("page2"),
     );
   }
@@ -77,7 +78,7 @@ class Page2 extends StatelessWidget {
 class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("page3"),
     );
   }

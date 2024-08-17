@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/Pages/dashboard.dart';
 import 'package:myapp/Pages/login.dart';
 import 'package:myapp/Pages/my.dart';
 
@@ -47,7 +46,7 @@ class _SplashState extends State<Splash> {
                 "iNotes",
                 style: TextStyle(
                     fontSize: 28,
-                    fontFamily: GoogleFonts.prostoOne().fontFamily,
+                    fontFamily: GoogleFonts.aladin().fontFamily,
                     fontWeight: FontWeight.bold,
                     color: const Color.fromARGB(255, 2, 102, 218)),
               )
