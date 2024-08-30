@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Pages/dashboard.dart';
 import 'package:myapp/Pages/my.dart';
+import 'package:myapp/Pages/services/auth_services.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,101 +16,57 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              Image.asset(
-                "assets/images/undraw_Mobile_login_re_9ntv.png",
-                height: 200,
-                width: double.maxFinite,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Login",
-                style: TextStyle(
-                    fontSize: 28,
-                    fontFamily: GoogleFonts.aladin().fontFamily,
-                    fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 2, 102, 218)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter your email address',
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email)),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter your password',
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-                child: Container(
-                  width: double.maxFinite,
-                  height: 55,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 2, 102, 218),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Text(
-                    "Login",
+      backgroundColor: Colors.white,
+      body: SafeArea(
+          child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                // Suggested code may be subject to a license. Learn more: ~LicenseLog:3407964297.
+                border: Border.all(
+                    width: 2, color: const Color.fromARGB(255, 156, 156, 156)),
+                shape: BoxShape.rectangle,
+                color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      var cred = await signInWithGoogle();
+
+                      print("this is detail ${cred}");
+                      if (cred != null) {
+                        My.pushReplaced(context, const Dashboard());
+                      }
+
+                      //My.push(context, const Dashboard());
+                    },
+                    icon: const FaIcon(
+                      FontAwesomeIcons.google,
+                      color: Color.fromARGB(255, 227, 15, 0),
+                      size: 30,
+                    ),
+                  ),
+                  Text(
+                    "Google",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                        color: Colors.black,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: GoogleFonts.robotoMono().fontFamily),
-                  )),
-                ),
+                  )
+                ],
               ),
-              const Text("or"),
-              InkWell(
-                onTap: () {
-                  My.push(context, const Dashboard());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-                  child: Container(
-                    width: double.maxFinite,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 218, 2, 6),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                        child: Text(
-                      "Continue with Google",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: GoogleFonts.robotoMono().fontFamily),
-                    )),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+        ),
+      )),
+    );
   }
 }

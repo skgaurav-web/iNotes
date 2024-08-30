@@ -14,26 +14,23 @@ class _DashboardState extends State<Dashboard> {
   late Widget _page2;
   late Widget _page3;
 
-  late int _currentIndex;
   late Widget _currentPage;
 
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
-    _page1 = Page1();
+    _page1 =  Page1();
     _page2 = Page2();
     _page3 = Page3();
 
     _pages = [_page1, _page2, _page3];
 
-    _currentIndex = 0;
     _currentPage = _page1;
   }
 
   void changeTab(int index) {
     setState(() {
-      _currentIndex = index;
       _currentPage = _pages[index];
     });
   }
@@ -58,6 +55,8 @@ class _DashboardState extends State<Dashboard> {
 }
 
 class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -67,6 +66,8 @@ class Page1 extends StatelessWidget {
 }
 
 class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -76,6 +77,8 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
