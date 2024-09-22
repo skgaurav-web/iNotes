@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/Pages/login.dart';
+import 'package:myapp/Pages/dashboard.dart';
 import 'package:myapp/Pages/my.dart';
 
 class Splash extends StatefulWidget {
@@ -64,6 +64,6 @@ class _SplashState extends State<Splash> {
 
   Future<void> navigationPage() async {
     if (!mounted) return;
-      My.pushReplaced(context, const Login());
+      My.pushReplaced(context, const Dashboard());
   }
 }
